@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZAMCIKK STORE - Paket Akrab XL/AXIS</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f7b2d4;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.header{
+background:#ff2b78;
+color:#fff;
+padding:20px;
+border-radius:20px;
+text-align:center;
+margin-bottom:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.header h1{
+font-size:32px;
+}
+
+.header p{
+margin-top:5px;
+font-size:15px;
+}
+
+.input-box{
+background:#fff;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.input-box label{
+font-weight:bold;
+display:block;
+margin-bottom:10px;
+}
+
+.input-box input{
+width:100%;
+padding:15px;
+border:2px solid #ddd;
+border-radius:12px;
+font-size:16px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.card-top{
+background:#17a34a;
+color:#fff;
+padding:18px;
+}
+
+.card-top h2{
+font-size:24px;
+margin-bottom:5px;
+}
+
+.harga{
+font-size:38px;
+font-weight:bold;
+}
+
+.card-body{
+padding:18px;
+}
+
+.area{
+display:flex;
+justify-content:space-between;
+padding:7px 0;
+border-bottom:1px solid #eee;
+}
+
+.btn{
+width:100%;
+border:none;
+padding:14px;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:12px;
+}
+
+.order{
+background:#22c55e;
+color:#fff;
+}
+
+.order:hover{
+opacity:.9;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+font-size:14px;
+color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>ZAMCIKK STORE</h1>
+<p>Paket Akrab XL / AXIS</p>
+</div>
+
+<div class="input-box">
+<label>Masukkan Nomor XL/AXIS</label>
+<input type="text" id="nomor" placeholder="Contoh: 087812345678">
+</div>
+
+<div class="grid" id="paketContainer"></div>
+
+<div class="footer">
+© ZAMCIKK STORE
+</div>
+
+</div>
+
+<script>
+
+const nomorWA = "6289528598985";
+
+const paketList = [
+
+{nama:"SUPER MINI",harga:"52K",area1:"13–15 GB",area2:"15–17 GB",area3:"20–22 GB",area4:"30–32 GB"},
+{nama:"SUPER LITE",harga:"57K",area1:"19 GB",area2:"21 GB",area3:"26 GB",area4:"36 GB"},
+{nama:"MINI BASIC",harga:"60K",area1:"25 GB",area2:"27 GB",area3:"32 GB",area4:"42 GB"},
+{nama:"MINI LITE",harga:"65K",area1:"31–33 GB",area2:"33–35 GB",area3:"38–40 GB",area4:"48–50 GB"},
+{nama:"MINI",harga:"68K",area1:"38–40 GB",area2:"40–42 GB",area3:"45–47 GB",area4:"55–57 GB"},
+{nama:"BIG LITE",harga:"75K",area1:"47 GB",area2:"49 GB",area3:"54 GB",area4:"64 GB"},
+{nama:"JUMBO LITE",harga:"77K",area1:"50–52 GB",area2:"52–54 GB",area3:"57–59 GB",area4:"67–70 GB"},
+{nama:"SUPER BIG LITE",harga:"80K",area1:"33–36.5 GB",area2:"36.5–39 GB",area3:"43–45 GB",area4:"71–74 GB"},
+{nama:"BIG MAX",harga:"85K",area1:"40 GB",area2:"42 GB",area3:"53 GB",area4:"77 GB"},
+{nama:"SUPER BIG",harga:"88K",area1:"63–65 GB",area2:"65–67 GB",area3:"70–72 GB",area4:"80–82 GB"},
+{nama:"BIG NEW",harga:"94K",area1:"69–71 GB",area2:"71–73 GB",area3:"76–78 GB",area4:"86–88 GB"},
+{nama:"MEGA LITE",harga:"97K",area1:"76 GB",area2:"78 GB",area3:"83 GB",area4:"93 GB"},
+{nama:"MEGA BIG",harga:"103K",area1:"88–90 GB",area2:"90–92 GB",area3:"95–97 GB",area4:"105–107 GB"},
+{nama:"JUMBO / XXL",harga:"105K",area1:"65 GB",area2:"70 GB",area3:"83 GB",area4:"123 GB"},
+{nama:"SUPER JUMBO",harga:"115K",area1:"85 GB",area2:"90 GB",area3:"103 GB",area4:"143 GB"},
+{nama:"EKSTRA JUMBO",harga:"120K",area1:"105–107 GB",area2:"110–112 GB",area3:"123–125 GB",area4:"163–165 GB"}
+
+];
+
+const container = document.getElementById("paketContainer");
+
+paketList.forEach(p => {
+
+container.innerHTML += `
+<div class="card">
+
+<div class="card-top">
+<h2>${p.nama}</h2>
+<div class="harga">${p.harga}</div>
+</div>
+
+<div class="card-body">
+
+<div class="area"><span>Area 1</span><b>${p.area1}</b></div>
+<div class="area"><span>Area 2</span><b>${p.area2}</b></div>
+<div class="area"><span>Area 3</span><b>${p.area3}</b></div>
+<div class="area"><span>Area 4</span><b>${p.area4}</b></div>
+
+<button class="btn order"
+onclick="orderPaket('${p.nama}','${p.harga}')">
+🛒 Klik Order
+</button>
+
+</div>
+</div>
+`;
+
+});
+
+function orderPaket(nama,harga){
+
+let nomor = document.getElementById("nomor").value.trim();
+
+if(nomor===""){
+alert("Silakan masukkan nomor XL/AXIS terlebih dahulu.");
+return;
+}
+
+let pesan =
+`ZAMCIKK STORE
+
+Order Paket Akrab XL/AXIS
+
+Nomor : ${nomor}
+Paket : ${nama}
+Harga : ${harga}
+
+Mohon diproses.
+Terima kasih.`;
+
+let url =
+`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
